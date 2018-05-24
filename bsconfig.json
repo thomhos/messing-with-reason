@@ -1,0 +1,20 @@
+{
+  "name": "reason-parcel",
+  "sources": [
+    {
+      "dir": "src",
+      "subdirs": true
+    }
+  ],
+  "bs-dependencies": ["reason-react", "bs-express", "bs-fetch"],
+  "reason": {
+    "react-jsx": 2
+  },
+  "bsc-flags": ["-bs-super-errors"],
+  "refmt": 3,
+  "package-specs": {
+    "module": "commonjs",
+    "in-source": true
+  },
+  "suffix": ".bs.js"
+}
