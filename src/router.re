@@ -1,7 +1,6 @@
 type route =
-  | Home
-  | List
-  | ListItem(string)
+  | Overview
+  | Detail(string)
   | NotFound;
 
 type state = route;
@@ -11,9 +10,8 @@ type action =
 
 let mapUrlToRoute = (url: ReasonReact.Router.url) =>
   switch (url.path) {
-  | [] => Home
-  | ["list"] => List
-  | ["list", id] => ListItem(id)
+  | [] => Overview
+  | [id] => Detail(id)
   | _ => NotFound
   };
 
