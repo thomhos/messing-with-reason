@@ -19,3 +19,9 @@ let createUrlFromString = (initialUrl: string) : ReasonReact.Router.url => {
   hash: "",
   search: "",
 };
+
+let valueFromEvent = evt : string => (
+                                       evt
+                                       |> ReactEventRe.Form.target
+                                       |> ReactDOMRe.domElementToObj
+                                     )##value;

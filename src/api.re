@@ -31,7 +31,7 @@ let fetchSomeTodos =
   Js.Promise.make((~resolve, ~reject as _) => {
     let todos: list(todo) = [
       {id: 0, description: "Lorem ipsum fooo", completed: false},
-      {id: 1, description: "Lorem ipsum fooo", completed: false},
+      {id: 1, description: "Lorem ipsum fooo", completed: true},
       {id: 2, description: "Lorem ipsum fooo", completed: false},
       {id: 3, description: "Lorem ipsum fooo", completed: false},
       {id: 4, description: "Lorem ipsum fooo", completed: false},
