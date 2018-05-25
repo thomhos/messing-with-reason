@@ -10,18 +10,31 @@ Express.Static.defaultOptions()
 
 /* Render the client on all other incoming get requests */
 let renderer = (_next, req, res) =>
-  res
-  |> Express.Response.sendString(
-       {
-         let initialUrl = req |> Express.Request.path;
-         let content = <App initialUrl /> |> ReactDOMServerRe.renderToString;
-         let title = "Hello World";
-         let stylesheet = "client.css";
-         let script = "client.js";
-         Template.make(~content, ~title, ~stylesheet, ~script, ());
-       },
-     )
-  |> Js.Promise.resolve;
+  Api.fetchSomeTodos
+  |> Js.Promise.then_(todos =>
+       res
+       |> Express.Response.sendString(
+            {
+              let initialUrl = req |> Express.Request.path;
+              let content =
+                <App initialUrl initialState=todos />
+                |> ReactDOMServerRe.renderToString;
+              let title = "Hello World";
+              let stylesheet = "client.css";
+              let script = "client.js";
+              let initialState = todos |> Api.encodeTodos;
+              Template.make(
+                ~content,
+                ~title,
+                ~stylesheet,
+                ~script,
+                ~initialState,
+                (),
+              );
+            },
+          )
+       |> Js.Promise.resolve
+     );
 
 renderer |> Express.PromiseMiddleware.from |> Express.App.get(app, ~path="*");
 

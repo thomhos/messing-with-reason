@@ -6,7 +6,7 @@
       "subdirs": true
     }
   ],
-  "bs-dependencies": ["reason-react", "bs-express", "bs-fetch"],
+  "bs-dependencies": ["reason-react", "bs-express", "bs-fetch", "bs-json"],
   "reason": {
     "react-jsx": 2
   },
